@@ -1,0 +1,8 @@
+/templates            (Status: 301) [Size: 253] [--> http://10.10.162.152/administrator/templates/]
+/modules              (Status: 301) [Size: 251] [--> http://10.10.162.152/administrator/modules/]
+/includes             (Status: 301) [Size: 252] [--> http://10.10.162.152/administrator/includes/]
+/language             (Status: 301) [Size: 252] [--> http://10.10.162.152/administrator/language/]
+/components           (Status: 301) [Size: 254] [--> http://10.10.162.152/administrator/components/]
+/cache                (Status: 301) [Size: 249] [--> http://10.10.162.152/administrator/cache/]
+/help                 (Status: 301) [Size: 248] [--> http://10.10.162.152/administrator/help/]
+/logs                 (Status: 301) [Size: 248] [--> http://10.10.162.152/administrator/logs/]

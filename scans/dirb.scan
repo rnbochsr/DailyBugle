@@ -1,0 +1,284 @@
+
+-----------------
+DIRB v2.22    
+By The Dark Raver
+-----------------
+
+OUTPUT_FILE: dirb.scan
+START_TIME: Sat Aug 13 19:49:53 2022
+URL_BASE: http://10.10.162.15/
+WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt
+
+-----------------
+
+GENERATED WORDS: 4612
+
+---- Scanning URL: http://10.10.162.15/ ----
+
+(!) FATAL: Too many errors connecting to host
+    (Possible cause: COULDNT CONNECT)
+
+-----------------
+END_TIME: Sat Aug 13 19:50:03 2022
+DOWNLOADED: 0 - FOUND: 0
+
+-----------------
+DIRB v2.22    
+By The Dark Raver
+-----------------
+
+OUTPUT_FILE: dirb.scan
+START_TIME: Sat Aug 13 19:51:31 2022
+URL_BASE: http://10.10.162.152/
+WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt
+
+-----------------
+
+GENERATED WORDS: 4612
+
+---- Scanning URL: http://10.10.162.152/ ----
+==> DIRECTORY: http://10.10.162.152/administrator/
+==> DIRECTORY: http://10.10.162.152/bin/
+==> DIRECTORY: http://10.10.162.152/cache/
++ http://10.10.162.152/cgi-bin/ (CODE:403|SIZE:210)
+==> DIRECTORY: http://10.10.162.152/components/
+==> DIRECTORY: http://10.10.162.152/images/
+==> DIRECTORY: http://10.10.162.152/includes/
++ http://10.10.162.152/index.php (CODE:200|SIZE:9280)
+==> DIRECTORY: http://10.10.162.152/language/
+==> DIRECTORY: http://10.10.162.152/layouts/
+==> DIRECTORY: http://10.10.162.152/libraries/
+==> DIRECTORY: http://10.10.162.152/media/
+==> DIRECTORY: http://10.10.162.152/modules/
+==> DIRECTORY: http://10.10.162.152/plugins/
++ http://10.10.162.152/robots.txt (CODE:200|SIZE:836)
+==> DIRECTORY: http://10.10.162.152/templates/
+==> DIRECTORY: http://10.10.162.152/tmp/
+
+---- Entering directory: http://10.10.162.152/administrator/ ----
+==> DIRECTORY: http://10.10.162.152/administrator/cache/
+==> DIRECTORY: http://10.10.162.152/administrator/components/
+==> DIRECTORY: http://10.10.162.152/administrator/help/
+==> DIRECTORY: http://10.10.162.152/administrator/includes/
++ http://10.10.162.152/administrator/index.php (CODE:200|SIZE:4846)
+==> DIRECTORY: http://10.10.162.152/administrator/language/
+==> DIRECTORY: http://10.10.162.152/administrator/logs/
+==> DIRECTORY: http://10.10.162.152/administrator/modules/
+==> DIRECTORY: http://10.10.162.152/administrator/templates/
+
+---- Entering directory: http://10.10.162.152/bin/ ----
++ http://10.10.162.152/bin/index.html (CODE:200|SIZE:31)
+
+---- Entering directory: http://10.10.162.152/cache/ ----
++ http://10.10.162.152/cache/index.html (CODE:200|SIZE:31)
+
+---- Entering directory: http://10.10.162.152/components/ ----
++ http://10.10.162.152/components/index.html (CODE:200|SIZE:31)
+
+---- Entering directory: http://10.10.162.152/images/ ----
+==> DIRECTORY: http://10.10.162.152/images/banners/
+==> DIRECTORY: http://10.10.162.152/images/headers/
++ http://10.10.162.152/images/index.html (CODE:200|SIZE:31)
+
+---- Entering directory: http://10.10.162.152/includes/ ----
++ http://10.10.162.152/includes/index.html (CODE:200|SIZE:31)
+
+---- Entering directory: http://10.10.162.152/language/ ----
++ http://10.10.162.152/language/index.html (CODE:200|SIZE:31)
+
+---- Entering directory: http://10.10.162.152/layouts/ ----
++ http://10.10.162.152/layouts/index.html (CODE:200|SIZE:31)
+==> DIRECTORY: http://10.10.162.152/layouts/joomla/
+==> DIRECTORY: http://10.10.162.152/layouts/libraries/
+==> DIRECTORY: http://10.10.162.152/layouts/plugins/
+
+---- Entering directory: http://10.10.162.152/libraries/ ----
+==> DIRECTORY: http://10.10.162.152/libraries/cms/
++ http://10.10.162.152/libraries/index.html (CODE:200|SIZE:31)
+==> DIRECTORY: http://10.10.162.152/libraries/joomla/
+==> DIRECTORY: http://10.10.162.152/libraries/legacy/
+==> DIRECTORY: http://10.10.162.152/libraries/vendor/
+
+---- Entering directory: http://10.10.162.152/media/ ----
+==> DIRECTORY: http://10.10.162.152/media/cms/
+==> DIRECTORY: http://10.10.162.152/media/contacts/
+==> DIRECTORY: http://10.10.162.152/media/editors/
++ http://10.10.162.152/media/index.html (CODE:200|SIZE:31)
+==> DIRECTORY: http://10.10.162.152/media/mailto/
+==> DIRECTORY: http://10.10.162.152/media/media/
+==> DIRECTORY: http://10.10.162.152/media/system/
+
+---- Entering directory: http://10.10.162.152/modules/ ----
++ http://10.10.162.152/modules/index.html (CODE:200|SIZE:31)
+
+---- Entering directory: http://10.10.162.152/plugins/ ----
+==> DIRECTORY: http://10.10.162.152/plugins/authentication/
+==> DIRECTORY: http://10.10.162.152/plugins/captcha/
+==> DIRECTORY: http://10.10.162.152/plugins/content/
+==> DIRECTORY: http://10.10.162.152/plugins/editors/
+==> DIRECTORY: http://10.10.162.152/plugins/extension/
+==> DIRECTORY: http://10.10.162.152/plugins/fields/
++ http://10.10.162.152/plugins/index.html (CODE:200|SIZE:31)
+==> DIRECTORY: http://10.10.162.152/plugins/installer/
+==> DIRECTORY: http://10.10.162.152/plugins/search/
+==> DIRECTORY: http://10.10.162.152/plugins/system/
+==> DIRECTORY: http://10.10.162.152/plugins/user/
+
+---- Entering directory: http://10.10.162.152/templates/ ----
++ http://10.10.162.152/templates/index.html (CODE:200|SIZE:31)
+==> DIRECTORY: http://10.10.162.152/templates/system/
+
+---- Entering directory: http://10.10.162.152/tmp/ ----
++ http://10.10.162.152/tmp/index.html (CODE:200|SIZE:31)
+
+---- Entering directory: http://10.10.162.152/administrator/cache/ ----
++ http://10.10.162.152/administrator/cache/index.html (CODE:200|SIZE:31)
+
+---- Entering directory: http://10.10.162.152/administrator/components/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/administrator/help/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/administrator/includes/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/administrator/language/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/administrator/logs/ ----
++ http://10.10.162.152/administrator/logs/index.html (CODE:200|SIZE:31)
+
+---- Entering directory: http://10.10.162.152/administrator/modules/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/administrator/templates/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/images/banners/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/images/headers/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/layouts/joomla/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/layouts/libraries/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/layouts/plugins/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/libraries/cms/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/libraries/joomla/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/libraries/legacy/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/libraries/vendor/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/media/cms/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/media/contacts/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/media/editors/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/media/mailto/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/media/media/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/media/system/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/plugins/authentication/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/plugins/captcha/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/plugins/content/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/plugins/editors/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/plugins/extension/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/plugins/fields/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/plugins/installer/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/plugins/search/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/plugins/system/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/plugins/user/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/templates/system/ ----
+==> DIRECTORY: http://10.10.162.152/templates/system/css/
+==> DIRECTORY: http://10.10.162.152/templates/system/html/
+==> DIRECTORY: http://10.10.162.152/templates/system/images/
++ http://10.10.162.152/templates/system/index.php (CODE:200|SIZE:0)
+
+---- Entering directory: http://10.10.162.152/templates/system/css/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/templates/system/html/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+---- Entering directory: http://10.10.162.152/templates/system/images/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.
+    (Use mode '-w' if you want to scan it anyway)
+
+-----------------
+END_TIME: Sat Aug 13 19:52:42 2022
+DOWNLOADED: 83016 - FOUND: 20
